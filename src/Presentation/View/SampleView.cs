@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using csmvvm.presenter;
+using csmvvm.utils;
 using csmvvm.viewmodel;
 using UniRx;
 
@@ -19,7 +20,7 @@ namespace csmvvm.view {
 
         public override void Request (HttpListenerRequest req, HttpListenerResponse res) {
             disposable = presenter.SampleViewResponseObserver ().Subscribe (viewmodel => {
-                Console.WriteLine ("viewmodel: " + viewmodel);
+                Ulog.Debug (viewmodel.ToString ());
                 disposable.Dispose ();
             });
             presenter.Call ();

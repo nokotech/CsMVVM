@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using csmvvm.usecase;
+using csmvvm.utils;
 using csmvvm.viewmodel;
 using UniRx;
 
@@ -25,9 +26,12 @@ namespace csmvvm.presenter {
         /// コール
         /// </summary>
         public void Call () {
-            SampleUsecase.GetInstance ().GetStatus ().Subscribe (str => {
+            IDisposable disposable = null;
+            disposable = SampleUsecase.GetInstance ().GetStatus ().Subscribe (str => {
+                Ulog.Debug (str);
                 SampleViewResponse json = new SampleViewResponse { Id = 0, Name = str };
                 sampleViewResponse.OnNext (json);
+                disposable.Dispose ();
             });
         }
 

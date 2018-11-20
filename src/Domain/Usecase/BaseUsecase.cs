@@ -8,9 +8,14 @@ using UniRx;
 
 namespace csmvvm.usecase {
 
-    interface IBaseUsecase { }
+    public interface IBaseUsecase<T> where T : class { }
 
-    abstract class BaseUsecase : IBaseUsecase {
-
+    /// <summary>
+    /// 【シングルトン】ユースケースの抽象クラス
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class BaseUsecase<T> where T : class, IBaseUsecase<T> {
+        protected static T instance;
+        protected BaseUsecase () { }
     }
 }

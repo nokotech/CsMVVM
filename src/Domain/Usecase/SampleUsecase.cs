@@ -5,12 +5,15 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using csmvvm.entity;
+using csmvvm.repository;
 using csmvvm.viewmodel;
 using UniRx;
 
 namespace csmvvm.usecase {
 
-    interface ISampleUsecase {
+    public interface ISampleUsecase : IBaseUsecase<ISampleUsecase> {
         /// <summary>
         /// 
         /// </summary>
@@ -21,19 +24,28 @@ namespace csmvvm.usecase {
     /// <summary>
     /// Singlton: Sampleのユースケース
     /// </summary>
-    class SampleUsecase : BaseUsecase, ISampleUsecase {
-
-        private Subject<string> subject = new Subject<string> ();
-        private static ISampleUsecase _singleInstance = new SampleUsecase ();
+    public class SampleUsecase : BaseUsecase<ISampleUsecase>, ISampleUsecase {
 
         private SampleUsecase () { }
 
         public static ISampleUsecase GetInstance () {
-            return _singleInstance;
+            if (instance == null) {
+                instance = new SampleUsecase ();
+            }
+            return instance;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="string"></typeparam>
+        /// <returns></returns>
+        private Subject<string> subject = new Subject<string> ();
         public Subject<string> GetStatus () {
-            subject.OnNext ("AAAAAAAAAAA");
+            Task.Run (() => {
+                SampleEntity entity = SampleRepositry.GetInstance ().GetStatus ();
+                subject.OnNext (entity.Result);
+            });
             return subject;
         }
     }

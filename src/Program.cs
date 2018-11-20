@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using csmvvm.utils;
 using csmvvm.view;
 using Newtonsoft.Json;
 using UniRx;
@@ -20,7 +21,7 @@ namespace csmvvm {
         /// </summary>
         /// <param name="args"></param>
         static void Main (string[] args) {
-            Console.WriteLine ("Start HttpServer.");
+            Ulog.Debug ("Start HttpServer.");
 
             try {
                 HttpListener listener = new HttpListener ();
@@ -32,10 +33,11 @@ namespace csmvvm {
                     HttpListenerRequest req = context.Request;
                     HttpListenerResponse res = context.Response;
                     routing (req).Request (req, res);
+                    Ulog.Debug ("==========================");
                 }
 
             } catch (Exception ex) {
-                Console.WriteLine ("Error: " + ex.Message);
+                Ulog.Debug ("Error: " + ex.Message);
             }
         }
 

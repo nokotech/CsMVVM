@@ -8,5 +8,6 @@
     <PackageReference Include="UnityEngine" Version="*"/>
     <PackageReference Include="Unity" Version="*"/>
     <PackageReference Include="Newtonsoft.Json" Version="*"/>
+    <PackageReference Include="UnityExtensions" Version="*"/>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using csmvvm.utils;
 using Newtonsoft.Json;
 using UniRx;
 
@@ -23,7 +24,8 @@ namespace csmvvm.view {
 
         protected void writeResponse (HttpListenerResponse res, ApiResponse response) {
             string jsonString = JsonConvert.SerializeObject (response.Json);
-            Console.WriteLine (jsonString);
+            Ulog.Debug (jsonString);
+
             byte[] content = Encoding.UTF8.GetBytes (jsonString);
             res.OutputStream.Write (content, 0, content.Length);
             res.StatusCode = response.StatusCode;
