@@ -19,12 +19,16 @@ namespace csmvvm.view {
         private IDisposable disposable;
 
         public override void Request (HttpListenerRequest req, HttpListenerResponse res) {
-            disposable = presenter.SampleViewResponseObserver ().Subscribe (viewmodel => {
+            disposable = presenter.SampleViewModelObserver ().Subscribe (viewmodel => {
                 Ulog.Debug (viewmodel.ToString ());
                 disposable.Dispose ();
+                disposable = null;
+                writeResponse (res, new ApiResponse { Json = viewmodel, StatusCode = 200 });
             });
             presenter.Call ();
-            writeResponse (res, new ApiResponse { Json = new SampleViewResponse { Id = 0, Name = "name" }, StatusCode = 200 });
+
+            while (disposable != null) { }
+            Ulog.Debug ("End");
         }
     }
 }

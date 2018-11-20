@@ -16,7 +16,7 @@ using UnityEngine;
 namespace csmvvm.repository {
 
     public interface ISampleRepository : IBaseRepository<ISampleRepository> {
-        SampleEntity GetStatus ();
+        SampleResponse GetStatus ();
     }
 
     /// <summary>
@@ -33,9 +33,9 @@ namespace csmvvm.repository {
             return instance;
         }
 
-        public SampleEntity GetStatus () {
+        public SampleResponse GetStatus () {
             String url = "https://raw.githubusercontent.com/nokotech/iOSMVVM/master/MockData/sample.json";
-            SampleEntity response = Http.GetInstance ().CallApp<SampleEntity> (url);
+            SampleResponse response = Http.GetInstance ().CallApp<SampleResponse> (url);
             Ulog.Debug (response.ToString ());
             return response;
         }

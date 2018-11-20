@@ -10,12 +10,9 @@ using System.Threading.Tasks;
 namespace csmvvm.entity {
 
     [DataContract]
-    public class SampleEntity {
+    public class SampleResponse {
 
-        [DataMember (Name = "id")]
-        public int Id { get; set; }
-
-        [DataMember (Name = "name")]
-        public string Name { get; set; }
+        [DataMember (Name = "result")]
+        public string Result { get; set; }
     }
 }

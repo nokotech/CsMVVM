@@ -3,7 +3,7 @@ namespace csmvvm.viewmodel {
     /// <summary>
     /// レスポンスのモデル
     /// </summary>
-    class SampleViewResponse {
+    public class SampleViewModel {
         public int Id;
         public string Name;
     }

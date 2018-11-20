@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using csmvvm.entity;
 using csmvvm.repository;
+using csmvvm.translater;
 using csmvvm.viewmodel;
 using UniRx;
 
@@ -18,7 +19,7 @@ namespace csmvvm.usecase {
         /// 
         /// </summary>
         /// <returns></returns>
-        Subject<string> GetStatus ();
+        Subject<SampleEntity> GetStatus ();
     }
 
     /// <summary>
@@ -40,11 +41,12 @@ namespace csmvvm.usecase {
         /// </summary>
         /// <typeparam name="string"></typeparam>
         /// <returns></returns>
-        private Subject<string> subject = new Subject<string> ();
-        public Subject<string> GetStatus () {
+        private Subject<SampleEntity> subject = new Subject<SampleEntity> ();
+        public Subject<SampleEntity> GetStatus () {
             Task.Run (() => {
-                SampleEntity entity = SampleRepositry.GetInstance ().GetStatus ();
-                subject.OnNext (entity.Result);
+                SampleResponse entity = SampleRepositry.GetInstance ().GetStatus ();
+                SampleEntity response = SampleTranslater.TranslateSample1 (entity);
+                subject.OnNext (response);
             });
             return subject;
         }

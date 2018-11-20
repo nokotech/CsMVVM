@@ -12,7 +12,7 @@ namespace csmvvm.presenter {
 
     interface ISamplePresenter {
         void Call ();
-        Subject<SampleViewResponse> SampleViewResponseObserver ();
+        Subject<SampleViewModel> SampleViewModelObserver ();
     }
 
     class SamplePresenter : BasePresenter, ISamplePresenter {
@@ -20,17 +20,17 @@ namespace csmvvm.presenter {
         /// <summary>
         /// 
         /// </summary>
-        private Subject<SampleViewResponse> sampleViewResponse = new Subject<SampleViewResponse> ();
+        private Subject<SampleViewModel> sampleViewModel = new Subject<SampleViewModel> ();
 
         /// <summary>
         /// コール
         /// </summary>
         public void Call () {
             IDisposable disposable = null;
-            disposable = SampleUsecase.GetInstance ().GetStatus ().Subscribe (str => {
-                Ulog.Debug (str);
-                SampleViewResponse json = new SampleViewResponse { Id = 0, Name = str };
-                sampleViewResponse.OnNext (json);
+            disposable = SampleUsecase.GetInstance ().GetStatus ().Subscribe (entity => {
+                Ulog.Debug ("");
+                SampleViewModel json = new SampleViewModel { Id = entity.Id, Name = entity.Name };
+                sampleViewModel.OnNext (json);
                 disposable.Dispose ();
             });
         }
@@ -39,8 +39,8 @@ namespace csmvvm.presenter {
         /// 
         /// </summary>
         /// <returns></returns>
-        public Subject<SampleViewResponse> SampleViewResponseObserver () {
-            return sampleViewResponse;
+        public Subject<SampleViewModel> SampleViewModelObserver () {
+            return sampleViewModel;
         }
     }
 }
