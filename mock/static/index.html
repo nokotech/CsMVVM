@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css" />
+    <!-- <link rel="shortcut icon" href="" /> -->
+  </head>
+  <body>
+    <!-- ヘッダー -->
+    <header class="shadow-sm">
+      <div id="nav-drawer">
+        <input id="nav-input" type="checkbox" class="nav-unshown" />
+        <label id="nav-open" for="nav-input"><span></span></label>
+        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+        <span id="nav-text">aaaaa</span>
+        <input id="nav-setting"><i class="fas fa-ellipsis-v fa-fw"></i></input>
+        <input id="nav-serach"><i class="fas fa-search fa-fw"></i></input>
+        <!-- ハンバーガー -->
+        <div id="nav-content">
+          <div id="nav-search-box">
+            <img id="nav-search-icon" src=""></img>
+            <input id="nav-search-text" placeholder=" ジャンプ"></input>
+          </div>
+          <div id="nav-channel">  
+            <ul>
+              channel
+              <li><span>◆</span>channel1</li>
+              <li><span>◆</span>channel2</li>
+              <li class="active"><span>◆</span>channel3</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <span style="clear: both;"></span>
+    <div>
+      <!-- メッセージ１ -->
+      <div class="main-talk">
+            <div class="main-left">
+                <img class="main-img" src=""></img>
+            </div>
+            <div class="main-right">
+                <span class="main-name">NAME</span>
+                <span class="main-date">yyyy/mm/dd hh:mm:ss</span>
+                <div class="main-box">
+                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+            </div>
+      </div>
+
+      <!-- メッセージ２ -->
+      <div class="main-talk">
+            <div class="main-left">
+                <img class="main-img" src=""></img>
+            </div>
+            <div class="main-right">
+                <span class="main-name">NAME</span>
+                <span class="main-date">yyyy/mm/dd hh:mm:ss</span>
+                <div class="main-box">
+                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+            </div>
+      </div>
+
+      <!-- 送信 -->
+      <div id="main-message" class="shadow-sm">
+        <input type="text" placeholder="〇〇へのメッセージ"></input>
+        <div>
+          <button id="main-message-send">送信</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
