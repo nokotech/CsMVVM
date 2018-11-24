@@ -15,6 +15,10 @@ app.listen(3000);
 
 const SAMPLE = "sample";
 
+app.get("/ping", (req, res) => {
+    res.json({ result: "success" });
+});
+
 app.get("/sample", (req, res) => {
     mongo(SAMPLE).then(collection => {
         logger.debug(req.params.id, req.body);
@@ -50,7 +54,7 @@ app.post("/sample", (req, res) => {
     mongo(SAMPLE).then(collection => {
         logger.debug(req.body);
         let row = req.body || {};
-        if (!row.name) {
+        if (row._id || !row.name) {
             res.send("validate error.");
         }
         collection

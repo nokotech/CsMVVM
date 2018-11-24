@@ -34,7 +34,7 @@ namespace csmvvm.repository {
         }
 
         public SampleResponse GetStatus () {
-            String url = "https://raw.githubusercontent.com/nokotech/iOSMVVM/master/MockData/sample.json";
+            String url = "http://localhost:3000/ping";
             SampleResponse response = Http.GetInstance ().CallApp<SampleResponse> (url);
             Ulog.Debug (response.ToString ());
             return response;
